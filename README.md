@@ -39,7 +39,9 @@ Worker thread further process the text from the file
 
 #Limitations
 1) It is assumed that input files are relatively small and stored as strings.If they are large, there are chances of memory issues.
+
 2) It is assumed that named-entity file is relatively small, and stored as arraylist of strings. If it is large, memory issues can occur and looking up named-entity entry will become costly.
+
 3)The Named entity is identified by looking up in the arraylist for each occurence which gives O(n^2).
 
 
