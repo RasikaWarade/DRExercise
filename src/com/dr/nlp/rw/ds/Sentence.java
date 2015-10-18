@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 /*
  * Class: Sentence
  * The data structure to store the sentences.
+ * It processes further using non-word character pattern.
  */
 public class Sentence{
 	private ArrayList<Items> sentenceItems;
@@ -29,7 +30,44 @@ public class Sentence{
 	}
 
 
-	public void process(String sentence) {
+	public void process(String sentence){
+
+		while(sentenceContainsNamedEntity(sentence)){
+			//System.out.println(sentence);
+			//System.out.println("Contains Named :"+sentence);
+			String findStr=getNamedEntity(sentence);
+			//System.out.println("Find:"+findStr);
+
+			int lastIndex = 0;
+			int startIndex=0;
+			while(lastIndex != -1){
+
+				lastIndex = sentence.indexOf(findStr,lastIndex);
+				if(lastIndex != -1){
+					if(startIndex==0){
+
+						//Process beginning
+						//System.out.println(sentence.substring(startIndex,lastIndex));
+						addWordPunctuation(sentence.substring(startIndex,lastIndex));
+						//process named entity
+						NamedEntity ner=new NamedEntity();
+						System.out.println("Process Named-Entity:"+findStr);
+						ner.setNamedEntity(findStr);
+						sentenceItems.add(ner);
+						startIndex=lastIndex+findStr.length();
+						sentence=sentence.substring(startIndex);
+
+
+					}	
+				}
+
+			}
+
+
+		}
+		addWordPunctuation(sentence);
+	}
+	public void addWordPunctuation(String sentence) {
 
 
 		//System.out.println(sentence);
@@ -59,5 +97,22 @@ public class Sentence{
 		}
 
 	}
+	public boolean sentenceContainsNamedEntity(String sentence){
+		NamedEntityList neList = NamedEntityList.getInstance();
+		for(String entity:neList.getNamedEntityList()){
+			if(sentence.contains(entity))
+				return true;
+		}
+		return false;
+	}
+	public String getNamedEntity(String sentence){
+		NamedEntityList neList = NamedEntityList.getInstance();
+		for(String entity:neList.getNamedEntityList()){
+			if(sentence.contains(entity))
+				return entity;
+		}
+		return "";
+	}
+
 
 }

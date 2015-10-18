@@ -7,6 +7,10 @@ import java.util.regex.Pattern;
 /*
  * Class: Paragraph
  * It store the data structure for paragraph and has list of sentences
+ * It processes the paragraph using the Regular Expression pattern:
+ * (\\.|\\?|\\!|\\.\"|\\.'|\\?\"|\\?'|\\!\"|\\!')\\s+[A-Z|\"|\']
+ * 
+ * which determines the sentence boundary by detecting: * . ? ! ." .' ?" ?' !" !'
  */
 
 public class Paragraph {
