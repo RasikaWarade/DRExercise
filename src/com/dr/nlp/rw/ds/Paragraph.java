@@ -17,17 +17,29 @@ public class Paragraph {
 	private ArrayList<Sentence> sentences;
 	private final static String REGEX_PATTERN = "(\\.|\\?|\\!|\\.\"|\\.'|\\?\"|\\?'|\\!\"|\\!')\\s+[A-Z|\"|\']";
 
+	/*
+	 * private constructor
+	 */
 	public Paragraph() {
 		this.sentences = new ArrayList<Sentence>();
 	}
+	/*
+	 * getter method
+	 */
 	public ArrayList<Sentence> getSentences() {
 		return sentences;
 	}
 
+	/*
+	 * setter method
+	 */
 	public void setSentences(ArrayList<Sentence> sentences) {
 		this.sentences = sentences;
 	}
 
+	/*
+	 * get the XML tag name for the object 
+	 */
 	public String getXMLTag(){
 		return "Paragraph";
 	}
@@ -43,7 +55,7 @@ public class Paragraph {
 			int beginIndex=0;
 
 			while (m.find( )) {
-				System.out.println("Process sentence:"+para.substring(beginIndex,m.end()-1));
+				//System.out.println("Process sentence:"+para.substring(beginIndex,m.end()-1));
 
 				//process the sentence further and add it to the list of sentences for the given paragraph 
 				Sentence sentence = new Sentence();
@@ -54,7 +66,7 @@ public class Paragraph {
 
 			//process the last part of the sentence
 			Sentence sentence = new Sentence();
-			System.out.println("Process sentence:"+para.substring(beginIndex));
+			//System.out.println("Process sentence:"+para.substring(beginIndex));
 			sentence.process(para.substring(beginIndex));
 			sentences.add(sentence);
 		}

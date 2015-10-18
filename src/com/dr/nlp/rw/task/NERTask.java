@@ -17,17 +17,31 @@ public class NERTask {
 	private String NERfileName;
 	private ArrayList<String> namedEntityList;
 
+	/*
+	 * private constructor
+	 */
+	
 	public NERTask() {
 		this.namedEntityList = new ArrayList<String>();
 		this.NERfileName="";
 	}
-
+	/*
+	 * getter method
+	 */
 	public String getNERfileName() {
 		return NERfileName;
 	}
+	/*
+	 * setter method
+	 */
+	
 	public void setNERfileName(String nERfileName) {
 		NERfileName = nERfileName;
 	}
+	/*
+	 * REad the file NER.txt and store its contents in arraylist
+	 */
+	
 	public void setList() {
 		// TODO Auto-generated method stub
 		BufferedReader br = null;

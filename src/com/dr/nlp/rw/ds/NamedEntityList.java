@@ -13,9 +13,15 @@ public class NamedEntityList {
 	private static NamedEntityList oneObj;
 	private ArrayList<String> namedEntityList;
 
+	/*
+	 * getter method: returns a list of named-entities
+	 */
 	public ArrayList<String> getNamedEntityList() {
 		return namedEntityList;
 	}
+	/*
+	 * setter method
+	 */
 	public void setNamedEntityList(ArrayList<String> namedEntityList) {
 		this.namedEntityList = namedEntityList;
 	}

@@ -13,23 +13,39 @@ public class Sentence{
 	private ArrayList<Items> sentenceItems;
 	private final static String REGEX_PATTERN = "\\W";
 
-
+	/*
+	 * private constructor
+	 */
+	
 	public Sentence() {
 		this.sentenceItems = new ArrayList<Items>();
 	}
 
+	/*
+	 * getter method
+	 */
 	public ArrayList<Items> getSentencesItems() {
 		return sentenceItems;
 	}
-
+	/*
+	 * setter method
+	 */
 	public void setSentencesItems(ArrayList<Items> sentenceItems) {
 		this.sentenceItems = sentenceItems;
 	}
+	
+	/*
+	 * get the XML tag name for the object 
+	 */
 	public String getXMLTag(){
 		return "Sentence";
 	}
 
 
+	/*
+	 * Process sentence to see if any named entity is present
+	 * if present break down the sentence and process the left over sentence to get words and punctuation
+	 */
 	public void process(String sentence){
 
 		while(sentenceContainsNamedEntity(sentence)){
@@ -51,7 +67,7 @@ public class Sentence{
 						addWordPunctuation(sentence.substring(startIndex,lastIndex));
 						//process named entity
 						NamedEntity ner=new NamedEntity();
-						System.out.println("Process Named-Entity:"+findStr);
+						//System.out.println("Process Named-Entity:"+findStr);
 						ner.setNamedEntity(findStr);
 						sentenceItems.add(ner);
 						startIndex=lastIndex+findStr.length();
@@ -67,6 +83,9 @@ public class Sentence{
 		}
 		addWordPunctuation(sentence);
 	}
+	/*
+	 * get words or punctuation
+	 */
 	public void addWordPunctuation(String sentence) {
 
 
@@ -79,7 +98,7 @@ public class Sentence{
 		int beginIndex=0;
 		while (m.find( )) {
 			if (beginIndex != m.start()) {
-				System.out.println("Process Word:"+sentence.substring(beginIndex,m.start()));
+				//System.out.println("Process Word:"+sentence.substring(beginIndex,m.start()));
 				Word w=new Word();
 				w.setWord(sentence.substring(beginIndex,m.start()));
 				sentenceItems.add(w);
@@ -88,7 +107,7 @@ public class Sentence{
 				beginIndex++;
 
 
-			System.out.println("Process punctuation:"+m.group());
+			//System.out.println("Process punctuation:"+m.group());
 			Punctuation p=new Punctuation();
 			p.setPunctuation(m.group());
 			sentenceItems.add(p);
@@ -97,6 +116,9 @@ public class Sentence{
 		}
 
 	}
+	/*
+	 * check if the sentence contains any named entity
+	 */
 	public boolean sentenceContainsNamedEntity(String sentence){
 		NamedEntityList neList = NamedEntityList.getInstance();
 		for(String entity:neList.getNamedEntityList()){
@@ -105,6 +127,9 @@ public class Sentence{
 		}
 		return false;
 	}
+	/*
+	 * get the named entity
+	 */
 	public String getNamedEntity(String sentence){
 		NamedEntityList neList = NamedEntityList.getInstance();
 		for(String entity:neList.getNamedEntityList()){
