@@ -18,6 +18,7 @@
  * Feature 3: To parallel process the input files and tokenize 
     Input: Takes input path for the directory extracted from the zip file as second argument and path for the file with             Named-entities ("NER.txt") as third argument
     >java Main 3 nlp_data NER.txt
+
     >java Main 3 <dir-name> NER.txt
 
     Outputs an xml file for each input file in the zip file 
@@ -36,5 +37,9 @@ There are two task for the first two features TokenizerTask and NERTask which fu
 ThreadPoolManager class creates the threadpool and assign task to worker thread
 Worker thread further process the text from the file
 
+#Limitations
+1) It is assumed that input files are relatively small and stored as strings.If they are large, there are chances of memory issues.
+2) It is assumed that named-entity file is relatively small, and stored as arraylist of strings. If it is large, memory issues can occur and looking up named-entity entry will become costly.
+3)The Named entity is identified by looking up in the arraylist for each occurence which gives O(n^2).
 
 
