@@ -1,5 +1,5 @@
 # DRExercise
-How To Run:
+#How To Run:
   Main Class
  * It takes first argument as feature no and requires extra arguments as per Task to be performed
 
@@ -22,4 +22,19 @@ How To Run:
 
     Outputs an xml file for each input file in the zip file 
     
+
+#Implementation
+1> The program can be started by running Main class in the package com.dr.nlp.rw. It is responsible to initiate the task for each feature.
+
+2> Data structures[com.dr.nlp.rw.ds] considered are Paragraph, Sentence, Word, Punctuation and NamedEntity. 
+The Word, Punctuation and NamedEntity classes extends Items class where the relationship is considered that an item of sentence can be any of these three objects.
+
+3> Task [com.dr.nlp.rw.task]
+There are two task for the first two features TokenizerTask and NERTask which further process the text from the file
+
+4>Thread Pool [com.dr.nlp.rw.threadpool]
+ThreadPoolManager class creates the threadpool and assign task to worker thread
+Worker thread further process the text from the file
+
+
 
